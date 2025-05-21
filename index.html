@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>TalebiDev</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="font-awesome.css">
+  
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="https://talebi.dev/" class="logo d-flex align-items-center">
+        <h1 class="sitename">TalebiDev</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home<br></a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#faqs">FAQs</a></li>          
+          <li><a href="#contact">Contact</a></li>
+          <div class="language-selector position-relative ms-4">
+            <button class="lang-icon">
+                <i class="bi bi-globe"></i>
+            </button>
+            <ul class="lang-menu">
+              <li>
+                  <button id="lang-en">
+                      <a href="https://talebi.dev/">
+                          <img src="images/flag/us-flag.svg" alt="EN" width="20" height="15"title="English language" class="no-right-click">
+                      </a>
+                  </button>
+              </li>
+              <li>
+                  <button id="lang-fa">
+                      <a href="https://talebi.dev/fa/">
+                          <img src="images/flag/ir-flag.svg" alt="FA" width="20" height="15" title="Persian language" class="no-right-click">
+                      </a>
+                  </button>
+              </li>
+            </ul>
+          </div>
+          
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langSelector = document.querySelector('.language-selector');
+      
+      langSelector.addEventListener('click', function(event) {
+        event.stopPropagation();
+        langSelector.classList.toggle('show-menu');
+      });
+  
+      document.addEventListener('click', function() {
+        if (langSelector.classList.contains('show-menu')) {
+          langSelector.classList.remove('show-menu');
+        }
+      });
+    });
+  </script>
+
+  <main class="main">
+
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-img.jpg" alt="" data-aos="fade-in" class="no-right-click">
+
+      <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+        <h2>Mohammad Talebi</h2>
+        <p><span class="typed" data-typed-items="Backend,Python Developer, Freelancer"></span></p>
+      </div>
+
+    </section>
+
+    <section id="about" class="about section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-md-6">
+            <div class="row justify-content-between gy-4">
+              <div class="col-lg-5">
+                <img src="assets/img/profile-img.jpg" class="img-fluid" alt="Profile Image">
+              </div>
+              <div class="col-lg-7 about-info">
+                <p><span class="blue-arrow">>  </span><strong class="test-note">Birthday :</strong><span class="number-font"> 10</span><span class="normal-font"> August </span><span class="number-font">  1998</span></p>
+                <p><span class="blue-arrow">>  </span><strong class="test-note">Age :</strong><span class="number-font"> <span id="age"></span></span></p>
+                <p><span class="blue-arrow">>  </span><strong class="test-note">Website :</strong><span class="normal-font"> <a href="https://pycoding.io" class="white-link">Pycoding</a></span></p>
+                <p><span class="blue-arrow">>  </span><strong class="test-note">Degree :</strong><span class="normal-font"> Associate degree</span></p>
+                <p><span class="blue-arrow">>  </span><strong class="test-note">Freelance :</strong><span class="available-text"> Available <i class="fas fa-check blue-check"></i></span></p>
+                <p class="icon-pack">
+                  <i class='bx bxl-python' title='Python'></i>
+                  <i class='bx bxl-django' title='Django'></i>
+                  <i class='bx bxl-javascript' title='JavaScript'></i>
+                  <i class='bx bx-data' title='Database'></i>
+                  <i class='bx bx-terminal' title='Bash'></i>
+                </p>
+              </div>
+            </div>
+        
+            <div class="skills-content">
+              <h5>Skills</h5>
+              <div class="skill">
+                <img src="assets/img/python-logo-only.svg" alt="Python Logo" title='Python' class="skill-logo no-right-click">
+                <img src="assets/img/django-logo-negative.svg" alt="Django Logo" title='Django Framework' class="skill-logo no-right-click">
+                <img src="assets/img/sqlite-svgrepo-com.svg" alt="SQLite Logo" title='Database Management (SQLite)' class="skill-logo no-right-click">
+                <img src="assets/img/Git-Icon.svg" alt="Git" title='Version Control (Git)' class="skill-logo no-right-click">
+                <img src="assets/img/More.svg" alt="More" title='More . . .' class="skill-more no-right-click">
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="about-me">
+              <h4>About me</h4>
+              <p>
+                Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
+                imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
+                porttitor accumsan tincidunt.
+              </p>
+              <p>
+                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
+                porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Modal Structure -->
+      <div id="moreSkillsModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>All skills</h2>
+          <div class="skill-list">
+            <img src="assets/img/python-logo-only.svg" alt="Python Logo" title='Python' class="skill-logo no-right-click">
+            <img src="assets/img/django-logo-negative.svg" alt="Django Framework" title='Django Framework' class="skill-logo no-right-click">
+            <img src="assets/img/sqlite-svgrepo-com.svg" alt="SQLite Logo" title='Database Management (SQLite)' class="skill-logo no-right-click">
+            <img src="assets/img/rest-api-icon.svg" alt="REST API Logo" title='RESTful API' class="skill-logo no-right-click">
+            <img src="assets/img/Git-Icon.svg" alt="Git" title='Version Control (Git)' class="skill-logo no-right-click">
+            <img src="assets/img/OOP.svg" alt="OOP" title='Object-Oriented Programming (OOP)' class="skill-logo no-right-click">
+          </div>
+        </div>
+      </div>
+    
+      <!-- JavaScript to handle the modal -->
+      <script>
+        document.querySelector('.skill-more').addEventListener('click', function() {
+          var modal = document.getElementById("moreSkillsModal");
+          modal.style.display = "block";
+        });
+    
+        var closeModal = document.querySelector('.close');
+        closeModal.onclick = function() {
+          var modal = document.getElementById("moreSkillsModal");
+          modal.style.display = "none";
+        }
+    
+        window.onclick = function(event) {
+          var modal = document.getElementById("moreSkillsModal");
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+      <script>
+        document.querySelector('.skill-more').addEventListener('mouseover', function() {
+          this.classList.add('has-hovered');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          var modal = document.getElementById("moreSkillsModal");
+          var skillMoreButton = document.querySelector('.skill-more');
+          var closeModal = document.querySelector('.close');
+          var body = document.body;
+
+          // نمایش مدال و غیرفعال کردن اسکرول
+          skillMoreButton.addEventListener('click', function() {
+            modal.style.display = "flex";
+            body.style.overflow = "hidden"; // غیرفعال کردن اسکرول
+          });
+
+          // بستن مدال و فعال کردن اسکرول
+          closeModal.onclick = function() {
+            modal.style.display = "none";
+            body.style.overflow = "auto"; // فعال کردن مجدد اسکرول
+          }
+
+          // بستن مدال در صورت کلیک خارج از مدال و فعال کردن اسکرول
+          window.onclick = function(event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+              body.style.overflow = "auto"; // فعال کردن مجدد اسکرول
+            }
+          }
+        });
+
+
+      </script>
+    </section>
+    
+    <section id="resume" class="resume section">
+
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Sumary</h3>
+
+            <div class="resume-item pb-0">
+              <h4>Brandon Johnson</h4>
+              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+              <ul>
+                <li>Portland par 127,Orlando, FL</li>
+                <li>(123) 456-7891</li>
+                <li>alice.barkley@example.com</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Master of Fine Arts &amp; Graphic Design</h4>
+              <h5>2015 - 2016</h5>
+              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
+              <h5>2010 - 2014</h5>
+              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Senior graphic design specialist</h4>
+              <h5>2019 - Present</h5>
+              <p><em>Experion, New York, NY </em></p>
+              <ul>
+                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
+                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
+                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
+                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
+              <h4>Graphic design specialist</h4>
+              <h5>2017 - 2018</h5>
+              <p><em>Stepping Stone Advertising, New York, NY</em></p>
+              <ul>
+                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
+                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
+                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
+                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="services" class="services section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+                <h3>Nesciunt Mete</h3>
+              </a>
+              <p>Provident nihil minus qui consequatur non omnis maiorlores iure perferendis tempore et consequatur.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+                <h3>Eosle Commodi</h3>
+              </a>
+              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+                <h3>Ledo Markt</h3>
+              </a>
+              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+                <h3>Asperiores Commodit</h3>
+              </a>
+              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative">
+                <h3>Velit Doloremque</h3>
+              </a>
+              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
+                <h3>Dolori Architecto</h3>
+              </a>
+              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="faqs" class="faq section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="content px-xl-5">
+              <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="faq-container">
+              <div class="faq-item faq-active">
+                <h3><span class="num">1.</span> <span>Non consectetur a erat nam at lectus urna duis?</span></h3>
+                <div class="faq-content">
+                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">2.</span> <span>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</span></h3>
+                <div class="faq-content">
+                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">3.</span> <span>Dolor sit amet consectetur adipiscing elit pellentesque?</span></h3>
+                <div class="faq-content">
+                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">4.</span> <span>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</span></h3>
+                <div class="faq-content">
+                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">5.</span> <span>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</span></h3>
+                <div class="faq-content">
+                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <p>Got a question or just want to say hi? Drop me a message or give me a call. I’m always here to help!</p>
+      </div><!-- End Section Title -->
+    
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    
+        <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-5">
+    
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <a href="https://maps.google.com/?q=Mashhad,+Razavi+Khorasan+Province,+Iran" class=" text-font">Iran - Razavi Khorasan - Mashhad</a>
+                </div>
+              </div>
+            </div><!-- End Info Item -->
+    
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call</h3>
+                  <a href="tel:+989921423977"  class=" test-font">+98 992 142 3977</a>
+                </div>
+              </div>
+            </div><!-- End Info Item -->
+    
+            <div class="col-lg-4">
+              <div class="info-item d-flex align-items-center">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email</h3>
+                  <a href="mailto:realpycoder@gmail.com" class=" next-font">realpycoder@gmail.com</a>
+                </div>
+              </div>
+            </div><!-- End Info Item -->
+    
+          </div>
+        </div>
+    
+        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300" onsubmit="return validateForm()">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required pattern="^[\u0600-\u06FF\sA-Za-z]+$" title="Name should only contain letters (Persian or English)." oninput="adjustTextDirection(this)">
+            </div>
+            
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" placeholder="Your Email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address using only English characters." oninput="adjustTextDirection(this)">
+            </div>
+            
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" placeholder="Subject" required pattern="^[\u0600-\u06FF\sA-Za-z\s0-9]+$" title="Subject can contain letters (Persian or English) and numbers." oninput="adjustTextDirection(this)">
+            </div>
+            
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="6" placeholder="Message" required pattern="^[\u0600-\u06FF\sA-Za-z\s0-9\s.,?!]+$" title="Message can contain letters, numbers, and punctuation (Persian or English)." oninput="adjustTextDirection(this)"></textarea>
+            </div>
+            
+            <div class="col-md-12 text-center">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+        
+              <button type="submit">Send Message</button>
+            </div>
+          </div>
+        </form>
+        
+        
+        <script>
+          function adjustTextDirection(input) {
+              const text = input.value;
+              const firstChar = text.charAt(0);
+
+              if (/^[\u0600-\u06FF]/.test(firstChar)) {
+                input.classList.add('persian-text');
+                input.classList.remove('english-text');
+              } else {
+                input.classList.add('english-text');
+                input.classList.remove('persian-text');
+              }
+           }
+        </script>
+        
+        <script>
+          function validateForm() {
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        
+            // Check if the name contains any invalid characters
+            if (!/^[\u0600-\u06FF\sA-Za-z]+$/.test(name)) {
+              alert("Name should only contain letters (Persian or English).");
+              return false;
+            }
+        
+            // Validate email format
+            if (!emailPattern.test(email)) {
+              alert("Please enter a valid email address.");
+              return false;
+            }
+        
+            return true;
+          }
+        </script>
+        <script>
+          function adjustTextDirection(input) {
+            const text = input.value;
+            const firstChar = text.charAt(0);
+        
+            if (/^[\u0600-\u06FF]/.test(firstChar)) {
+              input.style.direction = 'rtl';
+            } else {
+              input.style.direction = 'ltr';
+            }
+          }
+        </script>
+    
+
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container">
+      <div class="copyright text-center">
+        <div>© <span class="branding">TalebiDev</span> | <span id="year" class="brandyear"></span></div>
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://linkedin.com/in/talebi-dev/"><i class='bx bxl-linkedin' ></i></a>
+        <a href="https://github.com/TalebiDev"><i class='bx bxl-github' ></i></a>
+        <a href="https://instagram.com/talebidev/"><i class='bx bxl-instagram' ></i></a>
+        <a href="https://pycoding.io"><i class='bx bx-code-alt'></i></a>
+        <a href="https://x.com/TalebiDev"><svg xmlns="http://www.w3.org/2000/svg" class="x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+        <a href="https://t.me/TalebiDev"><i class='bx bxl-telegram' ></i></a>
+        <a href="https://youtube.com/@TalebiDev"><i class='bx bxl-youtube' ></i></a>
+      </div>
+      <div class="credits">
+        The Founder <a href="https://pycoding.io/">PyCoding</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    const currentYear = new Date().getFullYear();
+    document.querySelector('#year').textContent = currentYear;
+  </script>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/age-calculator.js"></script>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

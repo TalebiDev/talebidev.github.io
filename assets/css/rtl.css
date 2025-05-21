@@ -1,0 +1,126 @@
+/* Global direction and text alignment */
+
+@font-face {
+    font-family: 'IranYekan';
+    src: url('assets/css/iranyekanwebboldfanum.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+body, html {
+  font-family: 'IranYekan', sans-serif !important;
+  direction: ltr;
+  text-align: right;
+}
+
+.header .logo {
+    float: left; /* لوگو در سمت چپ */
+    text-align: left;
+}
+
+/* Navigation */
+.navmenu ul {
+    display: flex;
+    flex-direction: row-reverse; /* تغییر ترتیب آیتم‌ها به راست به چپ */
+    padding-right: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.navmenu ul li {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.navmenu ul li a {
+    text-align: right;
+}
+
+.language-selector {
+    position: absolute;
+    right: 0; /* تثبیت در سمت راست */
+    left: auto; /* جلوگیری از حرکت به سمت چپ */
+    top: 50%; /* تنظیم در وسط صفحه به صورت عمودی */
+    transform: translateY(-50%); /* برای وسط‌چین عمودی */
+    z-index: 1000; /* اگر نیاز به تغییر ترتیب لایه‌ها است */
+}
+
+.language-selector .lang-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+    float: none;
+}
+
+
+
+
+/* About Section */
+.about-info {
+    text-align: right;
+}
+
+.about-me p {
+    text-align: right;
+}
+
+.icon-pack i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+/* Skills Section */
+.skills-content h5 {
+    text-align: right;
+}
+
+.skill {
+    text-align: right;
+}
+
+/* Footer */
+.footer .copyright {
+    text-align: right;
+}
+
+.footer .social-links {
+    justify-content: flex-end;
+}
+
+/* Adjustments for mobile navigation */
+.mobile-nav-toggle {
+    right: 0;
+    left: auto;
+}
+
+/* Adjustments for form fields in the contact section */
+input, textarea {
+    text-align: right;
+}
+
+input[type="text"], input[type="email"] {
+    padding-right: 15px;
+    padding-left: 0;
+}
+
+/* Adjustments for other elements if needed */
+.skill-logo, .skill-more {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.service-item h3 {
+    text-align: right;
+}
+
+.service-item p {
+    text-align: right;
+}
+
+.faq-item h3 {
+    text-align: right;
+}
+
+.faq-content p {
+    text-align: right;
+}

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 850" width="850" height="850">
+  <defs>
+    <linearGradient id="base" x1="0%" y1="0%" x2="35%" y2="100%">
+      <stop offset="0%" stop-color="#eef6f6"/>
+      <stop offset="45%" stop-color="#d7e6e8"/>
+      <stop offset="100%" stop-color="#aec2c9"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="78%" cy="14%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#f3fbfb" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f3fbfb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="12%" cy="82%" r="60%">
+      <stop offset="0%" stop-color="#c7dce2" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#c7dce2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bluewash" cx="50%" cy="105%" r="65%">
+      <stop offset="0%" stop-color="#3aa0e8" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#3aa0e8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.10"/>
+    </radialGradient>
+    <filter id="soften" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="softenBig" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="850" height="850" fill="url(#base)"/>
+
+  <!-- soft interior shapes suggesting distant furniture, heavily blurred -->
+  <g filter="url(#softenBig)" opacity="0.55">
+    <ellipse cx="120" cy="700" rx="220" ry="260" fill="#7f9aa0"/>
+    <ellipse cx="760" cy="640" rx="180" ry="240" fill="#9fb6ba"/>
+    <ellipse cx="90" cy="120" rx="180" ry="150" fill="#c9dbdd"/>
+  </g>
+
+  <!-- blurred window mullions (soft vertical/horizontal bars, out of focus) -->
+  <g filter="url(#soften)" opacity="0.45">
+    <rect x="120" y="-40" width="16" height="930" fill="#8fa6ae"/>
+    <rect x="430" y="-40" width="14" height="930" fill="#8fa6ae"/>
+    <rect x="700" y="-40" width="18" height="930" fill="#8fa6ae"/>
+    <rect x="-40" y="260" width="930" height="14" fill="#9db2b9"/>
+  </g>
+
+  <!-- bright window bloom, top right -->
+  <rect width="850" height="850" fill="url(#sun)"/>
+  <!-- soft cool falloff, bottom left -->
+  <rect width="850" height="850" fill="url(#glow2)"/>
+  <!-- subtle brand-blue wash tying it to the site accent -->
+  <rect width="850" height="850" fill="url(#bluewash)"/>
+  <!-- gentle vignette for photographic depth -->
+  <rect width="850" height="850" fill="url(#vignette)"/>
+</svg>

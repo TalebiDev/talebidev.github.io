@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps Engineer</title>
+<meta property="og:site_name" content="TalebiDev">
+<meta property="og:title" content="DevOps Engineer">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://talebi.dev">
+<link rel="icon" href="images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0b0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script>
+// Apply the correct theme before first paint, so there's no flash of the
+// wrong theme while script.js (loaded at the end of the page) boots up.
+// Priority: an explicit choice the visitor already made (saved by the
+// theme button) > the visitor's own device clock (light 06:00-18:59,
+// dark otherwise) — never geolocation, so no permission prompt.
+(function(){
+  try{
+    var saved = localStorage.getItem('site_theme');
+    var theme = saved;
+    if (!theme){
+      var h = new Date().getHours();
+      theme = (h >= 6 && h < 19) ? 'light' : 'dark';
+    }
+    if (theme === 'light'){
+      document.documentElement.classList.add('light-theme');
+      document.body.classList.add('light-theme');
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute('content', '#eef1f6');
+    }
+  }catch(e){}
+})();
+</script>
+
+<nav>
+  <div class="wrap">
+    <a class="logo notranslate" href="https://talebi.dev"><span class="logo-mark-wrap"><img class="logo-mark logo-mark-dark" src="images/logo-mark.png" alt="TalebiDev logo" draggable="false"><img class="logo-mark logo-mark-light" src="images/logo-mark-light.png" alt="TalebiDev logo" draggable="false"></span><span class="dot"></span><span class="logo-text">Talebi<span class="txt-dev">Dev</span></span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#resume" class="nav-link" data-section="resume">Experience</a>
+      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+      <a href="#stack" class="nav-link" data-section="stack">Toolbelt</a>
+      <a href="#courses" class="nav-link" data-section="courses">Courses</a>
+      <a href="#services" class="nav-link" data-section="services">Services</a>
+      <a href="#recommendations" class="nav-link" data-section="recommendations">Reviews</a>
+      <a href="#faqs" class="nav-link" data-section="faqs">FAQs</a>
+    </div>
+    <div class="nav-actions">
+      <div class="lang">
+        <button class="lang-btn" id="langBtn" aria-label="Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9s1.3-6.4 3.8-9Z"/>
+          </svg>
+        </button>
+        <div class="lang-menu notranslate" id="langMenu">
+          <button class="sel" data-lang="en"><span class="flag">🇺🇸</span>English</button>
+          <button data-lang="nl"><span class="flag">🇳🇱</span>Dutch</button>
+
+        </div>
+      </div>
+      <a href="#contact" class="lang-btn contact-icon" aria-label="Go to contact" data-tooltip="Contact Me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+      </a>
+      <button class="lang-btn theme-btn" id="themeBtn" aria-label="Toggle theme" data-tooltip="Light theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.6A9 9 0 1 1 11.4 3a7.2 7.2 0 0 0 9.6 9.6Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+      </button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" class="nav-link" data-section="home">Home</a>
+    <a href="#about" class="nav-link" data-section="about">About</a>
+    <a href="#resume" class="nav-link" data-section="resume">Experience</a>
+    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+    <a href="#stack" class="nav-link" data-section="stack">Toolbelt</a>
+    <a href="#courses" class="nav-link" data-section="courses">Courses</a>
+    <a href="#services" class="nav-link" data-section="services">Services</a>
+    <a href="#recommendations" class="nav-link" data-section="recommendations">Reviews</a>
+    <a href="#faqs" class="nav-link" data-section="faqs">FAQs</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <!-- profile card -->
+    <div class="card">
+      <div class="avatar">
+        <img src="images/profile.webp" alt="Mohammad Talebi" width="850" height="850" loading="eager" draggable="false">
+      </div>
+      <h1><span class="name-wrap"><span class="name-flip"><span class="name-default">Mohammad Talebi</span><span class="name-hover" aria-hidden="true">TalebiDev</span></span><span class="name-rule"></span></span></h1>
+      <div class="role"><span id="roleText" class="notranslate"></span><span class="role-caret"></span></div>
+      <div class="badge"><span class="ping"></span><span class="badge-text">AVAILABLE FOR WORK</span></div>
+      <div class="remote-badges-row">
+        <div class="avail-chip" data-tooltip="Open to Remote Work">
+          <span class="avail-label">Remote</span>
+          <span class="avail-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00a2ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7" pathLength="1"/></svg>
+          </span>
+        </div>
+        <div class="avail-chip" data-tooltip="Ready to Relocate in NL 🇳🇱">
+          <span class="avail-label">Relocate</span>
+          <span class="avail-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00a2ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7" pathLength="1"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="socials-group">
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/TalebiDev" target="_blank" rel="noopener" aria-label="LinkedIn" data-tooltip="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg></a>
+          <a href="https://github.com/TalebiDev" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18 0 1.57-.02 2.84-.02 3.23 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg></a>
+          <a href="https://dev.to/TalebiDev" target="_blank" rel="noopener" aria-label="dev.to" data-tooltip="dev.to"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></a>
+          <a href="https://stackoverflow.com/users/21928476/TalebiDev" target="_blank" rel="noopener" aria-label="Stack Overflow" data-tooltip="Stack Overflow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17h16M4 13h16M4 9h10"/></svg></a>
+          <a href="https://www.hackerrank.com/profile/TalebiDev" target="_blank" rel="noopener" aria-label="HackerRank" data-tooltip="HackerRank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg></a>
+        </div>
+        <div class="socials-divider"></div>
+        <div class="socials">
+          <a aria-label="Discord" data-tooltip="Discord : TalebiDev" role="button" tabindex="0" class="discord-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg></a>
+          <a href="https://www.youtube.com/@TalebiDev" target="_blank" rel="noopener" aria-label="YouTube" data-tooltip="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.7 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+          <a href="https://www.instagram.com/TalebiDev" target="_blank" rel="noopener" aria-label="Instagram" data-tooltip="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="https://x.com/TalebiDev" target="_blank" rel="noopener" aria-label="X" data-tooltip="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.6L4.3 22H1.2l8.1-9.3L1 2h7l4.9 6L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg></a>
+          <a href="https://t.me/TalebiDev" target="_blank" rel="noopener" aria-label="Telegram" data-tooltip="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 3 2.5 10.7c-1.1.4-1.1 1.6 0 2l4.7 1.5 1.8 5.7c.3.9 1.4 1.1 2 .4l2.6-2.8 4.9 3.6c.9.6 2.1.1 2.3-.9L23.9 4c.2-1-.9-1.7-1.9-1Z"/></svg></a>
+          <a href="https://wa.me/TalebiDev" target="_blank" rel="noopener" aria-label="WhatsApp" data-tooltip="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.4 5.3 4.7.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg></a>
+          <a href="mailto:me@talebi.dev" aria-label="Email" class="warn-tip" data-tooltip="Personal Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5h20v14H2V5Zm2 2v.4l8 5.6 8-5.6V7l-8 5.5L4 7Z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <div class="resume-dd">
+          <button class="btn resume-btn" id="resumeBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+            Resume
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="resume-menu" id="resumeMenu">
+            <a href="/resume-talebi.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"/><path d="M14 2v6h6"/></svg>
+              PDF
+              <svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+            </a>
+            <a href="/resume-talebi.jpg" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.8"/><path d="m21 15-5-5-9 9"/></svg>
+              JPG
+              <svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- intro -->
+    <div>
+      <div class="intro-eyebrow"><span id="eyebrowCheck" class="eyebrow-check" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="eyebrow-check-circle" cx="12" cy="12" r="10"/><path class="eyebrow-check-mark" d="M7 12.5l3 3 7-7"/></svg></span><span id="eyebrowText" class="notranslate"></span><span class="caret"></span></div>
+      <h1 class="headline">
+        I'm Talebi, a
+        <span class="accentline">DevOps Engineer<span class="devops-infinity" aria-hidden="true"><svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="infinityFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--accent-strong)"/>
+            <stop offset="50%" style="stop-color:var(--accent)"/>
+            <stop offset="100%" style="stop-color:var(--accent-strong)"/>
+          </linearGradient>
+        </defs>
+        <path class="devops-infinity-path" d="M35,30 C35,17 45,17 52,24 C56,28 56,28 60,30 C64,32 64,32 68,36 C75,43 85,43 85,30 C85,17 75,17 68,24 C64,28 64,28 60,30 C56,32 56,32 52,36 C45,43 35,43 35,30 Z" pathLength="100" stroke-width="7" stroke-linecap="round"/>
+        <path class="devops-infinity-comet" d="M35,30 C35,17 45,17 52,24 C56,28 56,28 60,30 C64,32 64,32 68,36 C75,43 85,43 85,30 C85,17 75,17 68,24 C64,28 64,28 60,30 C56,32 56,32 52,36 C45,43 35,43 35,30 Z" pathLength="100" stroke-width="7" stroke-linecap="round"/>
+      </svg></span></span>
+        <span id="heroYearsPhrase">one year in, still hooked.</span>
+      </h1>
+      <p class="bio">
+        <span id="bioYearsPhrase">A year into DevOps</span> and going all-in. Building real CI/CD pipelines, containerizing production
+        apps, and getting comfortable across the cloud. Learned fast, shipped a lot, and ready to take on
+        more with the right team.
+      </p>
+
+      <div class="stats">
+        <div class="stat"><div class="n"><span>+</span>25</div><div class="l" id="ciStatLabel">CI/CD pipelines<br class="stat-break"> built</div></div>
+        <div class="stat"><div class="n">3</div><div class="l" id="cloudStatLabel">Cloud platforms <br class="stat-break">worked with</div></div>
+        <div class="stat"><div class="n" id="yearsStatNum">1</div><div class="l" id="yearsStatLabel">Year in<br class="stat-break"> DevOps</div></div>
+      </div>
+
+      <!-- signature terminal block -->
+      <div class="terminal" id="terminalBox">
+        <div class="bar">
+          <span class="dot-red" id="dotRed"></span><span class="dot-yellow" id="dotYellow"></span><span class="dot-green" id="dotGreen"></span>
+        </div>
+        <pre id="terminalPre"></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+      </div>
+      <h2>About</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="about-grid">
+      <p class="about-p">
+        <span class="about-line"><span id="aboutYearsPhrase">A year in</span> and still addicted. Give me a broken pipeline or a container that refuses to behave — I'll dig until it makes sense. Days are spent building real stuff on purpose:</span>
+        <span class="about-line about-line-highlight"><span class="hl-blue">CI/CD flows</span><span class="hl-white">,</span><span class="hl-blue"> Docker apps</span><span class="hl-white">,</span><span class="hl-blue"> Linux </span><span class="hl-white">+</span><span class="hl-blue"> cloud infrastructure.</span></span>
+        <span class="about-line">No fancy background, just pure curiosity and consistency, now backed by a year of hands-on production experience.</span>
+        <span class="about-line">Looking for a team that backs people who keep leveling up and go all-in.</span>
+      </p>
+      <div class="about-facts">
+        <div class="fact"><span class="fact-l">Based in</span><span class="fact-v">Remote / Open to relocate</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact"><span class="fact-l">Focus</span><span class="fact-v">Docker, CI/CD &amp; Cloud Infrastructure</span></div>
+        <div class="fact-divider"></div>
+        <div class="fact"><span class="fact-l">Currently</span><span class="fact-v">Growing as a DevOps engineer, open to full-time roles</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME (Experience + Toolbelt) -->
+  <section id="resume">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4V4Zm0 6h16v10H4V10Zm4 3h8"/></svg>
+      </div>
+      <h2>Experience</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="status-dot idle"></div>
+      <div class="exp-text">
+        <div class="exp-role">DevOps Engineer</div>
+        <div class="exp-co">Self-directed learning &amp; personal projects</div>
+        <div class="exp-desc"><span id="expYearsPhrase">A year into DevOps</span> — writing production-grade CI/CD pipelines, containerizing apps with Docker, and working hands-on with cloud infrastructure through real projects and daily practice.</div>
+      </div>
+      <div class="when">2025 — Present</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4V4Zm4 4 3 3-3 3M13 14h4"/></svg>
+      </div>
+      <h2>Projects</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18 0 1.57-.02 2.84-.02 3.23 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </div>
+        <h3>Project name #1</h3>
+        <p>Short description — what it does, the problem it solves, and how you built it.</p>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip">Tech</span><span class="chip">Tech</span>
+        </div>
+        <a href="#" target="_blank" rel="noopener" class="gh-link">View on GitHub <span class="gh-arrow">→</span></a>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18 0 1.57-.02 2.84-.02 3.23 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </div>
+        <h3>Project name #2</h3>
+        <p>Short description — what it does, the problem it solves, and how you built it.</p>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip">Tech</span><span class="chip">Tech</span>
+        </div>
+        <a href="#" target="_blank" rel="noopener" class="gh-link">View on GitHub <span class="gh-arrow">→</span></a>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18 0 1.57-.02 2.84-.02 3.23 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </div>
+        <h3>Project name #3</h3>
+        <p>Short description — what it does, the problem it solves, and how you built it.</p>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip">Tech</span><span class="chip">Tech</span>
+        </div>
+        <a href="#" target="_blank" rel="noopener" class="gh-link">View on GitHub <span class="gh-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 10L2 17l10 5 10-5-10-5Z"/></svg>
+      </div>
+      <h2>Toolbelt</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-group">
+        <div class="g-title">Cloud</div>
+        <div class="chips">
+          <span class="chip">AWS
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15.5c5 3 13 3 18 0" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/><path d="M18 13.5l3 2-2 3" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
+          <span class="chip">Linux
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="5.5" ry="7" fill="#0a0b0a" stroke="#e8e8e8" stroke-width="1"/><ellipse cx="12" cy="13.2" rx="3" ry="4.4" fill="#e8e8e8"/><circle cx="10" cy="9.6" r=".9" fill="#0a0b0a"/><circle cx="14" cy="9.6" r=".9" fill="#0a0b0a"/><path d="M9 18.5c1 1 5 1 6 0" stroke="#FF9900" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="g-title">Containers</div>
+        <div class="chips">
+          <span class="chip">Docker
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="#2496ED"><path d="M22.5 10.7c-.6-.4-1.4-.5-2.1-.4-.1-.9-.6-1.6-1.3-2.2l-.3-.2-.2.3c-.4.5-.6 1.3-.5 2 0 .3.1.7.3 1-.3.2-.6.3-.9.4H3.6c-.2 1.3 0 3.3 1.1 4.9 1.2 1.7 3 2.5 5.4 2.5 5 0 8.7-2.3 10.4-6.5.7 0 2.2 0 3-1.5l.2-.4-.2-.1Z"/><rect x="4.5" y="10" width="2" height="1.8"/><rect x="7.2" y="10" width="2" height="1.8"/><rect x="9.9" y="10" width="2" height="1.8"/><rect x="9.9" y="7.5" width="2" height="1.8"/><rect x="12.6" y="10" width="2" height="1.8"/><rect x="12.6" y="7.5" width="2" height="1.8"/></svg></span>
+          </span>
+          <span class="chip">Kubernetes
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#326CE5" stroke-width="1.3"><path d="M12 2.5 20.5 8v8L12 21.5 3.5 16V8L12 2.5Z"/><circle cx="12" cy="12" r="3.2"/><path d="M12 8.8V6M12 18v-2.8M15.2 10.3l2.4-1.6M6.4 15.3l2.4-1.6M15.2 13.7l2.4 1.6M6.4 8.7l2.4 1.6"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="g-title">CI / CD</div>
+        <div class="chips">
+          <span class="chip">GitHub Actions
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2088FF" stroke-width="1.6"><circle cx="9" cy="7" r="2.6"/><circle cx="9" cy="17" r="2.6"/><path d="M9 9.6v5"/><path d="m13.5 12 6-3.5v7L13.5 12Z" fill="#2088FF" stroke="none"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="g-title">Version Control</div>
+        <div class="chips">
+          <span class="chip">Git
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#F05033" stroke-width="1.6"><path d="M21 11.3 12.7 3a1.4 1.4 0 0 0-2 0l-1.7 1.7 2.2 2.2a1.7 1.7 0 0 1 2.1 2.1l2.1 2.1a1.7 1.7 0 1 1-1 1l-2-2v5.2a1.7 1.7 0 1 1-1.4 0V9.2a1.7 1.7 0 0 1-.9-2.2L7.6 4.5 3 9a1.4 1.4 0 0 0 0 2l8.3 8.3a1.4 1.4 0 0 0 2 0L21 11.3Z"/></svg></span>
+          </span>
+          <span class="chip">GitHub
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#ffffff"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.78 1.08.78 2.18 0 1.57-.02 2.84-.02 3.23 0 .3.21.66.8.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="g-title">Languages</div>
+        <div class="chips">
+          <span class="chip">Bash
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#4EAA25" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2" stroke="#e8e8e8" stroke-width="1.2"/><path d="m6 9 3 3-3 3"/><path d="M12 15h5" stroke="#e8e8e8"/></svg></span>
+          </span>
+          <span class="chip">Python
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5c-4.2 0-4 1.8-4 1.8v2h4v.6H6.3S3.5 6.5 3.5 12s2.5 5.3 2.5 5.3H8v-2.5s-.1-2.5 2.5-2.5h3.9s2.3.03 2.3-2.2V5.2s.35-2.7-4.7-2.7Zm-2.2 1.3a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6Z" fill="#3776AB"/><path d="M12 21.5c4.2 0 4-1.8 4-1.8v-2h-4v-.6h5.7s2.8.3 2.8-5.1-2.5-5.3-2.5-5.3H16v2.5s.1 2.5-2.5 2.5H9.6s-2.3-.03-2.3 2.2v3.9s-.35 2.7 4.7 2.7Zm2.2-1.3a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6Z" fill="#FFD43B"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="g-title">Fundamentals</div>
+        <div class="chips">
+          <span class="chip">Networking
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#e8e8e8" stroke-width="1.6"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M12 7.2v4M12 11.2 6.4 16M12 11.2 17.6 16"/></svg></span>
+          </span>
+          <span class="chip">Nginx
+            <span class="chip-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 21 7v10l-9 5-9-5V7l9-5Z" fill="#009639"/><path d="M8.5 9v6l7-6v6" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>
+      </div>
+      <h2>Courses</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="section-sub">Selected courses and learning milestones across DevOps, cloud, and software development.</p>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-thumb" data-course-zoom data-title="Course name #1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M3 15.5l4.5-4 3 2.5L15 10l6 6"/><path d="M9 20h6M12 18v2"/></svg>
+          <span>Certificate preview</span>
+          <div class="course-zoom-btn" aria-label="Zoom certificate" data-tooltip="View larger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m21 21-4.35-4.35M8 10.5h5M10.5 8v5"/></svg>
+          </div>
+        </div>
+        <div class="course-title-row"><h3>Course name #1</h3><a class="course-download" href="#" aria-label="Download certificate" data-tooltip="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg></a></div>
+        <p>Category / skill area</p>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb" data-course-zoom data-title="Course name #2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M3 15.5l4.5-4 3 2.5L15 10l6 6"/><path d="M9 20h6M12 18v2"/></svg>
+          <span>Certificate preview</span>
+          <div class="course-zoom-btn" aria-label="Zoom certificate" data-tooltip="View larger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m21 21-4.35-4.35M8 10.5h5M10.5 8v5"/></svg>
+          </div>
+        </div>
+        <div class="course-title-row"><h3>Course name #2</h3><a class="course-download" href="#" aria-label="Download certificate" data-tooltip="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg></a></div>
+        <p>Category / skill area</p>
+      </div>
+      <div class="course-card">
+        <div class="course-thumb" data-course-zoom data-title="Course name #3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M3 15.5l4.5-4 3 2.5L15 10l6 6"/><path d="M9 20h6M12 18v2"/></svg>
+          <span>Certificate preview</span>
+          <div class="course-zoom-btn" aria-label="Zoom certificate" data-tooltip="View larger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m21 21-4.35-4.35M8 10.5h5M10.5 8v5"/></svg>
+          </div>
+        </div>
+        <div class="course-title-row"><h3>Course name #3</h3><a class="course-download" href="#" aria-label="Download certificate" data-tooltip="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg></a></div>
+        <p>Category / skill area</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course certificate lightbox -->
+  <div class="course-lightbox" id="courseLightbox">
+    <div class="course-lightbox-backdrop" id="courseLightboxBackdrop"></div>
+    <div class="course-lightbox-inner">
+      <button class="course-lightbox-close" id="courseLightboxClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="course-lightbox-content" id="courseLightboxContent"></div>
+      <div class="course-lightbox-title" id="courseLightboxTitle"></div>
+    </div>
+  </div>
+
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h2>Services</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+        </div>
+        <h3>CI/CD Pipelines</h3>
+        <p>Building and maintaining GitHub Actions pipelines to automate builds, tests, and deployments across projects.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 15a4 4 0 0 1 1-7.9A5 5 0 0 1 13 5a4.5 4.5 0 0 1 6 4.2A4 4 0 0 1 18 17H6a3 3 0 0 1-3-2Z"/></svg>
+        </div>
+        <h3>Cloud Deployments</h3>
+        <p>Deploying and managing applications on AWS with an eye on reliability and cost-efficiency.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        </div>
+        <h3>Docker Containerization</h3>
+        <p>Containerizing applications with Docker so they run consistently across environments.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+        </div>
+        <h3>Monitoring &amp; Alerting</h3>
+        <p>Setting up dashboards and alerts to keep systems observable and catch issues early.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+        </div>
+        <h3>Scripting &amp; Automation</h3>
+        <p>Writing Bash and Python scripts to automate repetitive infrastructure and deployment tasks.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/></svg>
+        </div>
+        <h3>Team Collaboration</h3>
+        <p>Happy to pair up, share what I know, and keep leveling up as part of a team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section id="recommendations">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h1v3l-3 2"/><path d="M17 8a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h1v3l-3 2"/></svg>
+      </div>
+      <h2>Recommendations</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="section-sub">Kind words from colleagues and collaborators — swap these placeholders for real recommendations and LinkedIn links.</p>
+    <div class="testi-carousel" id="testiCarousel">
+      <div class="testi-track" id="testiTrack">
+      <div class="testi-item">
+        <div class="testi-card">
+          <svg class="testi-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L4 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Zm10 0a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L14 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Z"/></svg>
+          <p class="testi-text">Recommendation text goes here — a sentence or two on what it was like to work together.</p>
+          <span class="testi-tail" aria-hidden="true"></span>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          </div>
+          <div class="testi-info">
+            <div class="testi-name-row">
+              <h3 class="notranslate">Full Name</h3>
+              <a class="testi-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-tooltip="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg>
+              </a>
+            </div>
+            <p>Role, Company</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card">
+          <svg class="testi-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L4 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Zm10 0a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L14 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Z"/></svg>
+          <p class="testi-text">Recommendation text goes here — a sentence or two on what it was like to work together.</p>
+          <span class="testi-tail" aria-hidden="true"></span>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          </div>
+          <div class="testi-info">
+            <div class="testi-name-row">
+              <h3 class="notranslate">Full Name</h3>
+              <a class="testi-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-tooltip="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg>
+              </a>
+            </div>
+            <p>Role, Company</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card">
+          <svg class="testi-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L4 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Zm10 0a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L14 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Z"/></svg>
+          <p class="testi-text">Recommendation text goes here — a sentence or two on what it was like to work together.</p>
+          <span class="testi-tail" aria-hidden="true"></span>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          </div>
+          <div class="testi-info">
+            <div class="testi-name-row">
+              <h3 class="notranslate">Full Name</h3>
+              <a class="testi-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-tooltip="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg>
+              </a>
+            </div>
+            <p>Role, Company</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card">
+          <svg class="testi-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L4 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Zm10 0a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L14 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Z"/></svg>
+          <p class="testi-text">Recommendation text goes here — a sentence or two on what it was like to work together.</p>
+          <span class="testi-tail" aria-hidden="true"></span>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          </div>
+          <div class="testi-info">
+            <div class="testi-name-row">
+              <h3 class="notranslate">Full Name</h3>
+              <a class="testi-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-tooltip="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg>
+              </a>
+            </div>
+            <p>Role, Company</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-item">
+        <div class="testi-card">
+          <svg class="testi-quote" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L4 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Zm10 0a4 4 0 0 0-4 4v2a4 4 0 0 0 4 4h.5v3.2L14 23h4.5a1 1 0 0 0 1-1v-4.3a4 4 0 0 0 1-2.7v-2a4 4 0 0 0-4-4Z"/></svg>
+          <p class="testi-text">Recommendation text goes here — a sentence or two on what it was like to work together.</p>
+          <span class="testi-tail" aria-hidden="true"></span>
+        </div>
+        <div class="testi-person">
+          <div class="testi-avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          </div>
+          <div class="testi-info">
+            <div class="testi-name-row">
+              <h3 class="notranslate">Full Name</h3>
+              <a class="testi-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn profile" data-tooltip="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.6 4.78 6V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3v5.7h-4V9Z"/></svg>
+              </a>
+            </div>
+            <p>Role, Company</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="testi-dots" id="testiDots" role="tablist" aria-label="Recommendation slides"></div>
+  </section>
+
+  <!-- FAQS -->
+  <section id="faqs">
+    <div class="section-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 1.7-2.4 3.7"/><path d="M12 17h.01"/></svg>
+      </div>
+      <h2>FAQs</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">
+          How much experience do you have?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><p>I'm <span id="faqYearsPhrase">about a year into DevOps</span>. I've been hands-on with Docker, CI/CD, and cloud infrastructure through real projects, and I'm committed to keep growing fast.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Are you looking for full-time roles or freelance work?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><p>Full-time DevOps roles. I'm not taking on freelance work right now — I'd rather focus on growing inside a team.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          What's your usual response time?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><p>Within a day for new messages. Happy to jump on a call to talk more.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Are you open to remote work or relocating?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><p>Both — I'm open to fully remote roles, and I'm also ready to relocate to the Netherlands for the right opportunity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-head">
+      <div class="head-title-wrap">
+        <h2>Contact Me</h2>
+        <div class="head-rule"></div>
+      </div>
+      <p>Looking for a DevOps engineer, or just want to talk shop about the field? Send a message — I usually reply within a day.</p>
+    </div>
+
+    <div class="contact-info-bar">
+      <a class="info-item" href="https://www.google.com/maps/search/?api=1&query=Mashhad%2C+Khorasan+Razavi%2C+Iran" target="_blank" rel="noopener">
+        <div class="info-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <div>
+          <div class="info-l">Location</div>
+          <div class="info-v readable addr">Mashhad, Khorasan Razavi, Iran</div>
+        </div>
+      </a>
+      <a class="info-item" href="tel:+989921423977">
+        <div class="info-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+        </div>
+        <div>
+          <div class="info-l">Phone</div>
+          <div class="info-v-row">
+            <span class="copy-btn-spacer" aria-hidden="true"></span>
+            <span class="info-v readable">+98 992 142 3977</span>
+            <button type="button" class="copy-btn" data-copy-value="+989921423977" data-tooltip="Copy" aria-label="Copy phone number">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="copy-feedback">Phone Copied..!</div>
+        </div>
+      </a>
+      <a class="info-item warn-tip" href="mailto:job@talebi.dev" data-tooltip="Working Email">
+        <div class="info-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        </div>
+        <div>
+          <div class="info-l">Email</div>
+          <div class="info-v-row">
+            <span class="copy-btn-spacer" aria-hidden="true"></span>
+            <span class="info-v readable">job@talebi.dev</span>
+            <button type="button" class="copy-btn" data-copy-value="job@talebi.dev" data-tooltip="Copy" aria-label="Copy email address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="copy-feedback">Email Copied..!</div>
+        </div>
+      </a>
+    </div>
+
+    <form class="contact-form-card" id="contactForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/job@talebi.dev">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" id="subjectHiddenField" value="New message from your portfolio site">
+      <div class="form-row two">
+        <div class="form-field clearable">
+          <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 21c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
+          <input type="text" name="name" id="nameField" placeholder="Your Name" required>
+          <button type="button" class="field-clear" aria-label="Clear" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="form-field clearable">
+          <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <input type="email" name="email" id="emailField" placeholder="Your Email" required>
+          <button type="button" class="field-clear" aria-label="Clear" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+      </div>
+      <div class="form-row two">
+        <div class="form-field clearable">
+          <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+          <input type="tel" name="phone" id="phoneField" inputmode="tel" pattern="[0-9+\-\s()]*" placeholder="Your Phone" required>
+          <button type="button" class="field-clear" aria-label="Clear" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="form-field clearable">
+          <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4V4Zm0 6h16v10H4V10Zm4 3h8"/></svg>
+          <input type="text" name="subject" id="subjectField" placeholder="Subject" required>
+          <button type="button" class="field-clear" aria-label="Clear" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <textarea name="message" id="messageField" rows="5" maxlength="1000" placeholder="Message" required></textarea>
+          <span class="char-count" id="charCount">1000</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="file-field" id="fileField">
+          <input type="file" name="attachment" id="attachmentField" accept=".jpg,.jpeg,.png,.webp,.pdf,.doc,.docx,.txt" class="file-input-visually-hidden">
+          <label for="attachmentField" class="file-label" id="fileLabel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.44 11.05 12.25 20.24a5 5 0 0 1-7.07-7.07l9.19-9.19a3.33 3.33 0 0 1 4.71 4.71l-9.2 9.19a1.67 1.67 0 0 1-2.35-2.35l8.49-8.48"/></svg>
+            <span id="fileLabelText">Attach a file — JPG, JPEG, PNG, WEBP, PDF, DOC, DOCX or TXT (optional, max 5MB)</span>
+          </label>
+          <button type="button" class="file-remove" id="fileRemoveBtn" aria-label="Remove file" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="upload-progress" id="uploadProgress" hidden>
+          <div class="upload-progress-info">
+            <svg class="upload-progress-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
+            <span class="upload-progress-name" id="uploadProgressName"></span>
+            <span class="upload-progress-pct" id="uploadProgressPct"><span id="uploadProgressPctNum">0</span><span class="upload-progress-pct-sign">%</span></span>
+            <button type="button" class="upload-progress-cancel" id="uploadCancelBtn" aria-label="Cancel sending" data-tooltip="Remove">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="upload-progress-track">
+            <div class="upload-progress-fill" id="uploadProgressFill"></div>
+          </div>
+        </div>
+        <p class="form-note" id="fileNote"></p>
+      </div>
+      <div class="form-submit-row">
+        <button type="submit" class="btn primary submit-btn" id="sendBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+          <span class="send-label">Send Message</span>
+        </button>
+        <p class="form-note" id="formNote"></p>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<footer id="siteFooter">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:center; width:100%;">
+    <span class="copy-line" id="footerCopyLine">© <span id="copyYear">2026</span> <span class="notranslate brand">TalebiDev</span></span>
+    <span class="offline-line notranslate" id="footerOfflineLine" hidden>No internet connection</span>
+  </div>
+</footer>
+
+<button class="scroll-toggle" id="scrollToggle" aria-label="Scroll to top or bottom">
+  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

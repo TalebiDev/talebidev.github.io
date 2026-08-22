@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — TalebiDev</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/images/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+
+  @font-face{
+    font-family:'Sora';
+    font-style:normal;
+    font-weight:700;
+    font-display:swap;
+    src: url('/fonts/sora-700.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Sora';
+    font-style:normal;
+    font-weight:800;
+    font-display:swap;
+    src: url('/fonts/sora-800.woff2') format('woff2');
+  }
+</style>
+<style>
+  :root{
+    --bg:#0a0b0a;
+    --accent:#00a2ff;
+    --accent-strong:#0072e0;
+    --text:#f3f4f2;
+    --text-muted:#9a9d98;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; margin:0; }
+  body{
+    background:
+      radial-gradient(circle at 18% 20%, rgba(0,162,255,0.14), transparent 45%),
+      radial-gradient(circle at 84% 78%, rgba(0,162,255,0.09), transparent 42%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    position:relative;
+    overflow:hidden;
+  }
+  body::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image: radial-gradient(circle at 50% 38%, black, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 38%, black, transparent 72%);
+    pointer-events:none;
+  }
+  body::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.22) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image: radial-gradient(circle 420px at var(--mx, 50%) var(--my, 38%), rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.32) 50%, transparent 80%);
+    mask-image: radial-gradient(circle 420px at var(--mx, 50%) var(--my, 38%), rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.32) 50%, transparent 80%);
+    pointer-events:none;
+    opacity:0;
+    transition: opacity .5s ease;
+  }
+  body.mouse-active::after{ opacity:1; }
+
+  #warp-canvas{
+    position:fixed;
+    inset:0;
+    width:100%; height:100%;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .wrap{ position:relative; z-index:1; max-width:520px; text-align:center; }
+
+  .mascot{
+    width:150px; height:110px;
+    margin:0 auto 4px;
+    transform-origin: 50% 100%;
+    opacity:0; animation: sway 4.2s ease-in-out infinite, appear .5s ease forwards 0.9s;
+  }
+  @keyframes sway{
+    0%, 100%{ transform: rotate(0deg); }
+    50%{ transform: rotate(-2.5deg); }
+  }
+  .mascot svg{ width:100%; height:100%; display:block; overflow:visible; }
+  @keyframes appear{ to{ opacity:1; } }
+  .dev-screen{ fill:#12141a; stroke:url(#infGrad); stroke-width:2.4; }
+  .dev-base{ fill:url(#infGrad); opacity:0.35; }
+  .dev-eye{ fill:#f3f4f2; transition: opacity .25s ease; }
+  .dev-mouth{ fill:none; stroke:#f3f4f2; stroke-width:2.2; stroke-linecap:round; transition: opacity .25s ease; }
+  .dev-eye-happy, .dev-mouth-happy{
+    fill:none; stroke:#f3f4f2; stroke-width:2.2; stroke-linecap:round;
+    opacity:0; transition: opacity .25s ease;
+  }
+  .dev-cursor{ fill:var(--accent); animation: blink 1s step-start infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .dev-hand{
+    transform-origin: 82px 46px;
+    animation: facepalm 4.2s ease-in-out infinite;
+  }
+  @keyframes facepalm{
+    0%, 18%{ transform: translate(0,0) rotate(0deg); }
+    38%, 55%{ transform: translate(-19px,-19px) rotate(-18deg); }
+    75%, 100%{ transform: translate(0,0) rotate(0deg); }
+  }
+
+  .wrap:has(a.home-btn:hover) .dev-eye,
+  .wrap:has(a.home-btn:hover) .dev-mouth{ opacity:0; }
+  .wrap:has(a.home-btn:hover) .dev-eye-happy,
+  .wrap:has(a.home-btn:hover) .dev-mouth-happy{ opacity:1; }
+  .wrap:has(a.home-btn:hover) .mascot{
+    animation: nodYes .5s ease-in-out infinite, appear .5s ease forwards 0.9s;
+  }
+  @keyframes nodYes{
+    0%, 100%{ transform: rotate(0deg) translateY(0); }
+    50%{ transform: rotate(4deg) translateY(-5px); }
+  }
+  .wrap:has(a.home-btn:hover) .dev-hand{
+    animation: cheer .5s ease-in-out infinite;
+  }
+  @keyframes cheer{
+    0%, 100%{ transform: translate(-4px,-28px) rotate(-20deg); }
+    50%{ transform: translate(-8px,-36px) rotate(-32deg); }
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px; font-weight:600;
+    letter-spacing:0.28em; text-transform:uppercase;
+    color: var(--accent);
+    margin: 10px 0 4px;
+    opacity:0; animation: fadeUp .6s ease forwards 1.05s;
+  }
+  h1.big404{
+    position:relative;
+    font-family:'Sora', sans-serif;
+    font-weight:800;
+    font-size: 118px;
+    font-size: clamp(76px, 19vw, 148px);
+    line-height:0.95;
+    margin:0;
+    letter-spacing:-0.02em;
+    background: linear-gradient(135deg, #ffffff 8%, var(--accent) 55%, var(--accent-strong) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter: drop-shadow(0 0 46px rgba(0,162,255,0.28));
+    opacity:0; animation: fadeUp .7s ease forwards 1.2s;
+  }
+  .big404-outline{
+    position:absolute; inset:0;
+    -webkit-text-stroke: 1.4px rgba(255,255,255,0.85);
+    color:transparent;
+    pointer-events:none;
+    clip-path: inset(0 50% 0 50%);
+    transition: clip-path 1.3s ease;
+  }
+  h1.big404:hover .big404-outline{
+    clip-path: inset(0 0% 0 0%);
+    transition: clip-path 2.6s cubic-bezier(.4,0,.2,1);
+  }
+  h2.msg{
+    position:relative;
+    font-family:'Sora', sans-serif;
+    font-weight:700; font-size: 23px;
+    margin: 16px 0 10px;
+    opacity:0; animation: fadeUp .6s ease forwards 1.4s;
+  }
+  h2.msg .msg-text{
+    display:inline-block;
+    clip-path: inset(0 0 0 0);
+  }
+  @keyframes typeReveal{
+    from{ clip-path: inset(0 100% 0 0); }
+    to{ clip-path: inset(0 0 0 0); }
+  }
+  .wrap:has(a.home-btn:hover) p.sub{
+    color:#f3f4f2;
+  }
+  .wrap:has(a.home-btn:hover) h2.msg .msg-text{
+    animation: typeReveal .85s steps(22, end) 1;
+  }
+  @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+  p.sub{
+    color: var(--text-muted);
+    line-height:1.75; font-size:15px;
+    margin: 0 0 36px;
+    opacity:0; animation: fadeUp .6s ease forwards 1.5s;
+    transition: color .4s ease;
+  }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:translateY(0); } }
+
+  a.home-btn{
+    position:relative;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 32px;
+    font-family:'Sora', sans-serif;
+    font-weight:700; font-size:15px;
+    color:#04121e;
+    text-decoration:none;
+    border-radius:999px;
+    background: linear-gradient(120deg, #7dd6ff, var(--accent) 45%, var(--accent-strong));
+    background-size:220% 220%;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 14px 34px -10px rgba(0,162,255,0.6);
+    overflow:hidden;
+    isolation:isolate;
+    opacity:0;
+    animation: fadeUp .6s ease forwards 1.7s, gradientShift 6s ease infinite;
+    transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease;
+  }
+  a.home-btn:hover{
+    background: linear-gradient(120deg, #b5e8ff, #4fc0ff 45%, #0091f7);
+    background-size:220% 220%;
+    color:#04121e;
+    transform: translateY(-8px) scale(1.06);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.5), 0 10px 24px -10px rgba(0,162,255,0.4);
+    transition: transform .5s cubic-bezier(.34,1.61,.7,1), box-shadow .3s ease;
+  }
+  a.home-btn .icon-wrap{ position:relative; width:16px; height:16px; display:flex; flex-shrink:0; overflow:visible; }
+  a.home-btn .icon-wrap svg{ position:absolute; inset:0; margin:auto; transition: opacity .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+  a.home-btn .icon-arrow{ opacity:1; transform:translateX(0) scale(1); }
+  a.home-btn:hover .icon-arrow{ opacity:0; transform:translateX(-4px) scale(1); }
+  a.home-btn .icon-infinity{ opacity:0; transform:scale(1); }
+  a.home-btn:hover .icon-infinity{ opacity:1; transform:scale(1.85); }
+  .btn-infinity-path{
+    stroke:#04121e; fill:none; stroke-width:8; stroke-linecap:round;
+    stroke-dasharray:100; stroke-dashoffset:100; opacity:0.4;
+  }
+  .btn-infinity-comet{
+    stroke:#04121e; fill:none; stroke-width:8; stroke-linecap:round;
+    stroke-dasharray:16 84; stroke-dashoffset:100; opacity:0;
+  }
+  a.home-btn:hover .btn-infinity-path{
+    animation: draw .35s ease-out forwards;
+  }
+  a.home-btn:hover .btn-infinity-comet{
+    animation: draw .35s ease-out forwards, flow .8s linear infinite, appear .2s ease forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes flow{ to{ stroke-dashoffset:-100; } }
+  @keyframes gradientShift{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+  a.home-btn::after{
+    content:''; position:absolute; top:0; left:-60%; width:35%; height:100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: skewX(-20deg);
+    transition: left .65s ease;
+    z-index:1;
+  }
+  a.home-btn:hover::after{ left:140%; }
+
+  @media (prefers-reduced-motion: reduce){
+    .mascot, .dev-hand,
+    .eyebrow, h1.big404, h2.msg, p.sub, a.home-btn{ animation:none !important; opacity:1 !important; }
+    #warp-canvas{ display:none; }
+  }
+</style>
+</head>
+<body>
+  <canvas id="warp-canvas"></canvas>
+  <div class="wrap">
+
+    <div class="mascot">
+      <svg viewBox="0 0 120 70">
+        <defs>
+          <linearGradient id="infGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0072e0"/>
+            <stop offset="50%" stop-color="#00a2ff"/>
+            <stop offset="100%" stop-color="#0072e0"/>
+          </linearGradient>
+        </defs>
+
+        <rect class="dev-base" x="26" y="46" width="68" height="6" rx="2"/>
+
+        <rect class="dev-screen" x="34" y="10" width="52" height="36" rx="7"/>
+
+        <circle class="dev-eye" cx="52" cy="27" r="2.1"/>
+        <circle class="dev-eye" cx="68" cy="27" r="2.1"/>
+        <path class="dev-mouth" d="M52,36 Q60,31 68,36"/>
+
+        <path class="dev-eye-happy" d="M49,28 Q52,24 55,28"/>
+        <path class="dev-eye-happy" d="M65,28 Q68,24 71,28"/>
+        <path class="dev-mouth-happy" d="M51,32 Q60,41 69,32"/>
+        <rect class="dev-cursor" x="72" y="34.5" width="4" height="6"/>
+
+        <g class="dev-hand">
+          <path fill="url(#infGrad)" d="M82,46 C82,40 86,36 91,36 C96,36 99,40 99,45 C99,50 96,53 91,53 C88,53 85,52 82,49 Z"/>
+          <path fill="url(#infGrad)" d="M91,36 C90,32 90,29 91,26" stroke="url(#infGrad)" stroke-width="3" stroke-linecap="round"/>
+          <path fill="url(#infGrad)" d="M95,37 C95.5,33 96.5,30 98,28" stroke="url(#infGrad)" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="eyebrow">404 — Not Found</div>
+    <h1 class="big404" id="big404">404<span class="big404-outline" aria-hidden="true">404</span></h1>
+    <h2 class="msg"><span class="msg-text">Even the pipeline got lost here</span></h2>
+    <p class="sub">The link might be broken, or the page moved somewhere else.<br>Let's get you back on track.</p>
+
+    <a class="home-btn" href="/">
+      <span class="icon-wrap">
+        <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        <svg class="icon-infinity" width="16" height="16" viewBox="0 0 40 20">
+          <path class="btn-infinity-path" pathLength="100" d="M8,10 C8,5 13,5 16,8 C17,9 17,9 18,10 C19,11 19,11 20,8 C23,5 28,5 28,10 C28,15 23,15 20,12 C19,11 19,11 18,10 C17,9 17,9 16,12 C13,15 8,15 8,10 Z"/>
+          <path class="btn-infinity-comet" pathLength="100" d="M8,10 C8,5 13,5 16,8 C17,9 17,9 18,10 C19,11 19,11 20,8 C23,5 28,5 28,10 C28,15 23,15 20,12 C19,11 19,11 18,10 C17,9 17,9 16,12 C13,15 8,15 8,10 Z"/>
+        </svg>
+      </span>
+      Back to talebi.dev
+    </a>
+  </div>
+
+  <script>
+    (function(){
+      var docEl = document.documentElement;
+      var body = document.body;
+      var raf = null;
+
+      function updatePos(x, y){
+        docEl.style.setProperty('--mx', x + 'px');
+        docEl.style.setProperty('--my', y + 'px');
+      }
+
+      function onMove(x, y, overContent){
+        if (raf) return;
+        raf = requestAnimationFrame(function(){
+          updatePos(x, y);
+          if (overContent){
+            body.classList.remove('mouse-active');
+          } else {
+            body.classList.add('mouse-active');
+          }
+          raf = null;
+        });
+      }
+
+      window.addEventListener('mousemove', function(e){
+        var overContent = !!(e.target && e.target.closest && e.target.closest('.wrap'));
+        onMove(e.clientX, e.clientY, overContent);
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function(e){
+        if (e.touches && e.touches[0]){
+          var t = e.touches[0];
+          var el = document.elementFromPoint(t.clientX, t.clientY);
+          var overContent = !!(el && el.closest && el.closest('.wrap'));
+          onMove(t.clientX, t.clientY, overContent);
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <script>
+    
+    (function(){
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var canvas = document.getElementById('warp-canvas');
+      if (!canvas || reduceMotion) return;
+
+      var ctx = canvas.getContext('2d');
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var W = 0, H = 0;
+
+      function resize(){
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = Math.round(W * dpr);
+        canvas.height = Math.round(H * dpr);
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      var particles = [];
+      var MAX_PARTICLES = 520;
+      var mouseX = W / 2, mouseY = H / 2;
+      var lastX = mouseX, lastY = mouseY;
+      var hasMoved = false;
+      var idleFrame = 0;
+
+      
+      
+      var density = 1;
+      var densityTarget = 1;
+      var densityTimer = 0;
+
+      function pickNewDensityTarget(){
+        
+        var roll = Math.random();
+        if (roll < 0.18){
+          densityTarget = 2.2 + Math.random() * 1.3;   
+        } else if (roll < 0.4){
+          densityTarget = 0.15 + Math.random() * 0.25; 
+        } else {
+          densityTarget = 0.6 + Math.random() * 1.1;   
+        }
+        densityTimer = 35 + Math.floor(Math.random() * 70);
+      }
+      pickNewDensityTarget();
+
+      function spawn(x, y, count){
+        for (var i = 0; i < count; i++){
+          if (particles.length >= MAX_PARTICLES) particles.shift();
+          var angle = Math.random() * Math.PI * 2;
+
+          
+          
+          
+          var kind = Math.random();
+          var speed, width, maxAge, accel;
+          if (kind < 0.3){
+            
+            speed = 0.18 + Math.random() * 0.35;
+            width = 0.7 + Math.random() * 0.9;
+            accel = 1.006 + Math.random() * 0.008;
+            maxAge = 70 + Math.random() * 60;
+          } else if (kind < 0.72){
+            
+            speed = 0.4 + Math.random() * 0.9;
+            width = 1.1 + Math.random() * 1.5;
+            accel = 1.014 + Math.random() * 0.014;
+            maxAge = 55 + Math.random() * 55;
+          } else {
+            
+            speed = 1.1 + Math.random() * 1.9;
+            width = 1.8 + Math.random() * 2.4;
+            accel = 1.02 + Math.random() * 0.024;
+            maxAge = 40 + Math.random() * 40;
+          }
+
+          particles.push({
+            ox: x,
+            oy: y,
+            ang: angle,
+            curve: Math.random() < 0.55 ? 0 : (Math.random() - 0.5) * 0.05,
+            dist: Math.random() * 3,
+            prevDist: 0,
+            speed: speed,
+            accel: accel,
+            age: 0,
+            maxAge: maxAge,
+            width: width
+          });
+        }
+      }
+
+      function handleMove(x, y){
+        mouseX = x; mouseY = y;
+        var dx = mouseX - lastX, dy = mouseY - lastY;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        var base = Math.min(7, Math.max(hasMoved ? 1 : 0, Math.round(d / 10)));
+        var count = Math.round(base * density);
+        if (count > 0){
+          spawn(mouseX, mouseY, count);
+          lastX = mouseX; lastY = mouseY;
+        }
+        hasMoved = true;
+      }
+
+      window.addEventListener('mousemove', function(e){
+        handleMove(e.clientX, e.clientY);
+      }, { passive: true });
+
+      window.addEventListener('touchmove', function(e){
+        if (e.touches && e.touches[0]){
+          handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      function tick(){
+        ctx.clearRect(0, 0, W, H);
+
+        idleFrame++;
+
+        densityTimer--;
+        if (densityTimer <= 0) pickNewDensityTarget();
+        density += (densityTarget - density) * 0.04;
+
+        if (hasMoved && idleFrame % 5 === 0){
+          spawn(mouseX, mouseY, Math.max(0, Math.round(density)));
+        }
+
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+
+        for (var i = particles.length - 1; i >= 0; i--){
+          var p = particles[i];
+          p.age++;
+          if (p.age >= p.maxAge){
+            particles.splice(i, 1);
+            continue;
+          }
+
+          if (p.curve) p.ang += p.curve;
+
+          p.prevDist = p.dist;
+          p.speed *= p.accel;
+          p.dist += p.speed;
+
+          var t = p.age / p.maxAge;
+          var alpha = t < 0.15 ? (t / 0.15) : (1 - (t - 0.15) / 0.85);
+          alpha = Math.max(0, Math.min(1, alpha)) * 0.85;
+          if (alpha <= 0.01) continue;
+
+          var cos = Math.cos(p.ang), sin = Math.sin(p.ang);
+          var x1 = p.ox + cos * p.prevDist;
+          var y1 = p.oy + sin * p.prevDist;
+          var x2 = p.ox + cos * p.dist;
+          var y2 = p.oy + sin * p.dist;
+
+          ctx.strokeStyle = 'rgba(126,148,255,' + alpha + ')';
+          ctx.lineWidth = p.width;
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+
+        ctx.globalCompositeOperation = 'source-over';
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
